@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PETELECO</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: black; /* Cor de fundo preto */
+      color: white; /* Cor do texto */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    h1, .countdown {
+      font-size: 3rem;
+      margin-top: 20px;
+    }
+    .countdown {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  </style>
+  <script>
+    function startCountdown() {
+      var endDate = new Date('2024-07-19T18:00:00'); // Data e hora final da contagem regressiva
+      var countdownElement = document.getElementById('countdown');
+
+      var countdownInterval = setInterval(function() {
+        var now = new Date().getTime(); // Hora atual em milissegundos
+        var distance = endDate - now; // Calcula a diferença entre as datas
+
+        // Calcula o tempo restante em dias, horas, minutos e segundos
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Exibe o tempo restante no elemento de contagem regressiva
+        countdownElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        // Verifica se a contagem regressiva terminou
+        if (distance < 0) {
+          clearInterval(countdownInterval);
+          countdownElement.innerHTML = "Tempo esgotado!";
+        }
+      }, 1000); // Atualiza a cada segundo (1000 milissegundos)
+    }
+  </script>
+</head>
+<body onload="startCountdown();">
+  <h1>PETELECO</h1>
+  
+  <div class="countdown" id="countdown"></div>
+</body>
+</html>
+
+
+
+
